@@ -31,9 +31,6 @@ const HomeScreen = ({navigation}) => {
   const favorites = useSelector(state => state.favorites.list);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  console.log('Cart Items -->', cart);
-  console.log('Favorites Items -->', favorites);
-
   const totalCount = Object.values(cart).reduce(
     (total, item) => total + item.count,
     0,
@@ -42,8 +39,6 @@ const HomeScreen = ({navigation}) => {
   const isIdInFavorites = productId => {
     return favorites.some(item => item.id === productId);
   };
-
-  console.log('Total Count:', totalCount);
 
   const handleIncrease = product => {
     dispatch(increaseQuantity(product));
@@ -56,10 +51,8 @@ const HomeScreen = ({navigation}) => {
   const handleSearchInputChange = text => {
     setSearchInput(text);
     const filteredData = allProducts.filter(item => {
-      console.log(item.title.toLocaleLowerCase(), text.toLocaleLowerCase());
       return item.title.toLocaleLowerCase().includes(text.toLocaleLowerCase());
     });
-    console.log('list', filteredData);
     setProducts(filteredData);
   };
 
@@ -128,7 +121,7 @@ const HomeScreen = ({navigation}) => {
                 color: '#1E222B',
                 fontWeight: '600',
                 fontSize: 14,
-              }}>{`Rs ${item.price}`}</Text>
+              }}>{`$${item.price}`}</Text>
             <Text
               style={{
                 color: '#616A7D',
@@ -302,6 +295,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    color: '#ffffff',
   },
   dummyItem: {
     width: Dimensions.get('window').width * 0.8,

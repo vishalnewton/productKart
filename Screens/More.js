@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import SvgIcon from '../Utils/SvgIcon';
 
-const More = () => {
+const More = ({navigation}) => {
   return (
     <View style={{flex: 1, backgroundColor: '#ffffff'}}>
       <View style={styles.header}>
@@ -53,5 +53,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 16,
     marginLeft: 20,
+    color: '#1E222B',
   },
 });

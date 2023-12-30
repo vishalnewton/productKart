@@ -23,7 +23,6 @@ const Cart = ({navigation}) => {
     0,
   );
   let total = 0;
-  console.log('Cart Raw--->', cart);
 
   const cartArray = Object.entries(cart).map(([key, value]) => ({
     id: value.product.id,
@@ -40,16 +39,12 @@ const Cart = ({navigation}) => {
     count: value.count,
   }));
 
-  console.log(cartArray);
-
   for (const key in cart) {
     if (cart.hasOwnProperty(key)) {
       const product = cart[key].product;
       total += cart[key].count * product.price;
     }
   }
-
-  console.log('Total', total);
 
   const handleIncrease = product => {
     dispatch(increaseQuantity(product));
@@ -77,12 +72,12 @@ const Cart = ({navigation}) => {
             width: '68%',
           }}>
           <Image source={{uri: item.thumbnail}} style={styles.thumbnail} />
-          <View>
+          <View style={styles.productContentContainer}>
             <Text style={styles.productName}>{item.title}</Text>
             <Text style={styles.productPrice}>${item.price}</Text>
           </View>
         </View>
-        <View style={{...styles.quantityContainer, width: '32%'}}>
+        <View style={{...styles.quantityContainer}}>
           <TouchableOpacity
             style={styles.quantityButton}
             onPress={() => handleDecrease(item)}>
@@ -118,7 +113,7 @@ const Cart = ({navigation}) => {
         </View>
 
         {cartArray?.length > 0 ? (
-          <View style={{marginHorizontal: 20, flex: 1, marginTop: 20}}>
+          <View>
             <View style={styles.productOuterContainer}>
               <FlatList
                 data={cartArray}
@@ -172,9 +167,9 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 16,
     marginLeft: 20,
+    color: '#1E222B',
   },
   productContainer: {
-    marginHorizontal: 15,
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
@@ -188,12 +183,16 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 5,
   },
+  productContentContainer: {
+    maxWidth: '71%',
+    width: '100%',
+  },
   productName: {
     fontSize: 14,
     fontWeight: '500',
     marginBottom: 5,
     color: '#1E222B',
-    width: '62%',
+    flexWrap: 'wrap',
   },
   productPrice: {
     fontSize: 14,
@@ -204,25 +203,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 5,
+    flex: 1,
   },
   quantityButton: {
     padding: 5,
     borderRadius: 3,
   },
   quantityText: {
-    marginHorizontal: 10,
     fontSize: 14,
     color: '#1E222B',
     fontWeight: '500',
   },
   productOuterContainer: {
     marginTop: 30,
-    height: Dimensions.get('window').height * 0.52,
+    maxHeight: Dimensions.get('window').height * 0.52,
+    marginHorizontal: 20,
   },
   editContainer: {
     flexDirection: 'row-reverse',
-    marginHorizontal: 20,
     marginVertical: 10,
+    marginHorizontal: 20,
   },
   editText: {
     color: '#2A4BA0',
@@ -231,9 +231,9 @@ const styles = StyleSheet.create({
   },
   totalContainer: {
     backgroundColor: '#F8F9FB',
-    marginHorizontal: 20,
     borderRadius: 30,
     padding: 10,
+    marginHorizontal: 20,
   },
   totalTextContainer: {
     flexDirection: 'row',

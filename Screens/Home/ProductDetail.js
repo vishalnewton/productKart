@@ -56,8 +56,6 @@ const ProductDetail = ({navigation, route}) => {
     const floor = Math.floor(rating);
     const decimalPart = rating - floor;
 
-    console.log(floor, decimalPart);
-
     if (decimalPart <= 0.14) {
       return floor;
     } else if (decimalPart <= 0.39) {
@@ -74,7 +72,6 @@ const ProductDetail = ({navigation, route}) => {
   const renderItem = ({item}) => (
     <View style={styles.imagesCarousel}>
       <Image source={{uri: item}} style={styles.thumbnail} />
-      {console.log('Image', item)}
     </View>
   );
   return (
@@ -123,7 +120,13 @@ const ProductDetail = ({navigation, route}) => {
             rating={roundToNearest()}
             fullStarColor={'gold'}
           />
-          <Text style={{fontSize: 14, fontWeight: '400', marginLeft: 5}}>
+          <Text
+            style={{
+              fontSize: 14,
+              fontWeight: '400',
+              marginLeft: 5,
+              color: '#A1A1AB',
+            }}>
             110 Reviews
           </Text>
         </View>

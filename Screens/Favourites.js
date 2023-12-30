@@ -29,7 +29,7 @@ const Favourites = ({navigation}) => {
     dispatch(increaseQuantity(product));
   };
 
-  const NoFavorites = () => {
+  const NoFavorites = ({navigation}) => {
     return (
       <View style={styles.svgContainer}>
         <SvgIcon icon="noFavorites" />
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 16,
     marginLeft: 20,
+    color: '#1E222B',
   },
   itemContainer: {
     flex: 1,
