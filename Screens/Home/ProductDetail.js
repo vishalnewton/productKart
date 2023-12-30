@@ -103,14 +103,14 @@ const ProductDetail = ({navigation, route}) => {
           }}>
           {item.title}
         </Text>
-        <Text
+        {/* <Text
           style={{
             color: '#1E222B',
             fontWeight: '800',
             fontSize: 50,
           }}>
           gfdgfd
-        </Text>
+        </Text> */}
         <View
           style={{
             flexDirection: 'row',
